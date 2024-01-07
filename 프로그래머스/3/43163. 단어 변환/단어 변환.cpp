@@ -20,9 +20,7 @@ int diff_one(string now, string comp){
 }
 
 void dfs(string now, string target, int step, vector<string> words){
-     
-    
-    
+         
     if (now==target){
         
         if (minimum<step) return;
@@ -30,13 +28,11 @@ void dfs(string now, string target, int step, vector<string> words){
         minimum=step;
         return;
     }
-    
-    
+       
     for (int i=0; i<words.size(); i++){
         if (diff_one(now, words[i])==1&&DAT[i]==0){
             DAT[i]=1;
-            
-            
+                        
             dfs(words[i],target,step+1,words);
             
             DAT[i]=0;
@@ -44,8 +40,7 @@ void dfs(string now, string target, int step, vector<string> words){
         }
         
     }
-    
-    
+        
 }
 
 int solution(string begin, string target, vector<string> words) {
@@ -58,7 +53,6 @@ int solution(string begin, string target, vector<string> words) {
     
     if (minimum==100) answer=0;
     else answer=minimum;
-    
     
     return answer;
 }
