@@ -11,11 +11,11 @@ int solution(vector<vector<int>> board, vector<int> moves) {
     vector<int> vec={-1};
     
     for (int move: moves){
-        int cnt=0;
+        // int cnt=0;
         for (int i=0; i<n; i++){
             int new_toy=board[i][move-1];
             
-            if (cnt==1) break;
+            // if (cnt==1) break;
             
             if (new_toy!=0){
                 //vec 추가
@@ -28,7 +28,8 @@ int solution(vector<vector<int>> board, vector<int> moves) {
                     
                 }
                 board[i][move-1]=0;
-                cnt++;
+                // cnt++;
+                break;
             }
             else continue;
         }
