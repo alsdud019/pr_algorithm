@@ -7,29 +7,31 @@ using namespace std;
 
 vector<string> solution(vector<string> players, vector<string> callings) {
     vector<string> answer;
-    map<int, string> m1;
-    map<string, int> m2;
+    map<string, int> m;
     
     for (int i=0; i<players.size(); i++){
-        m1[i]=players[i];
-        m2[players[i]]=i;
+        m[players[i]]=i;
+
     }
     
-    for (auto who:callings){
-
-        int now_rank=m2[who];
-        // cout<<now_rank<<endl;
-        string before_name=m1[now_rank-1];
+    for (int i=0; i<callings.size(); i++){
+        int now_rank=m[callings[i]];
+        int before_rank=now_rank-1;
         
-        m1[now_rank-1]=who;
-        m1[now_rank]=before_name;
+        m[callings[i]]--; m[players[before_rank]]++;
         
-        m2[who]=now_rank-1;
-        m2[before_name]=now_rank;
+        string tmp="";
+        tmp=players[now_rank];
+        players[now_rank]=players[before_rank];
+        players[before_rank]=tmp;
+        
+        
     }
-    for (auto member:m1){
+    for (auto member:players){
         // cout<<member.first<<" "<<member.second<<endl;
-        answer.push_back(member.second);
+        // answer.push_back(member.second);
+        // cout<<member<<endl;
+        answer.push_back(member);
     }
     
     return answer;
