@@ -17,8 +17,6 @@ int gcd(int a, int b){
     return MIN;
 }
 
-
-
 int solution(vector<int> arr) {
     int answer = 0;
     
@@ -26,8 +24,6 @@ int solution(vector<int> arr) {
     for (int i=1; i<arr.size(); i++){
         now=now * arr[i] /gcd(now, arr[i]);
     }
-    
 
-    
     return now;
 }
