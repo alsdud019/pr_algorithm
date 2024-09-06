@@ -1,0 +1,16 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> solution(int n, long long left, long long right) {
+    vector<int> answer;
+    
+    for (long long i=left; i<=right; i++){
+        long long mok=i/n;
+        long long remain=i%n;
+        answer.push_back(max(mok,remain)+1);
+    }
+    
+    return answer;
+}
