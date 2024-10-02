@@ -24,6 +24,7 @@ int main() {
 	cin >> N >> M;
 
 	for (int i = 1; i <= N; i++) parent[i] = i;
+
 	for (int i = 1; i <= N; i++) {
 		for (int j = 1; j <= N; j++) {
 			int c;
@@ -34,18 +35,18 @@ int main() {
 		}
 	}
 	
-	int first;
-	cin >> first;
-	int agoRoot = Find(first);
+	int root;
 
-	for (int i = 1; i < M; i++) {
+	for (int i = 0; i < M; i++) {
 		int route;
 		cin >> route;
-		int root = Find(route);
-
-		if (agoRoot != root) { cout << "NO" << '\n'; return 0; }
-
-		agoRoot = root;
+		if (i == 0) root = Find(route);
+		else {
+			if (Find(route) != Find(root)) {
+				cout << "NO";
+				return 0;
+			}
+		}
 
 	}
 	cout << "YES" << '\n';
