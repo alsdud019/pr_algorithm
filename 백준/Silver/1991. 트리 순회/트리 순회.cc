@@ -1,52 +1,47 @@
-#include <iostream> 
-#include <vector>
+#include <iostream>
+
 using namespace std;
 
-int N;
-struct Node{
-    char left;
-    char right;
-};
+char arr[27][2];
 
-vector<Node> arr(27);
-
-void preorder(char now){
-    if (now=='.') return;
-    cout<<now;
-    preorder(arr[now-'A'].left);
-    preorder(arr[now-'A'].right);
-}
-void postorder(char now){
-    if (now=='.') return;
-    postorder(arr[now-'A'].left);
-    postorder(arr[now-'A'].right);
-    cout<<now;
-}
-void midorder(char now){
-    if (now=='.') return;
-    midorder(arr[now-'A'].left);
-    cout<<now;
-    midorder(arr[now-'A'].right);
+void preOrder(char now) {
+	if (now == '.') return;
+	cout << now;
+	preOrder(arr[now - 'A'][0]);
+	preOrder(arr[now - 'A'][1]);
 }
 
-int main(){
-    
-    cin>>N;
-    for (int i=0; i<N; i++){
-        char mid, left,right;
-        cin>>mid>>left>>right;
-        arr[mid-'A'].left=left;
-        arr[mid-'A'].right=right;
-        //arr[mid-'A']={left, right};
-        
-    }
-    
-    preorder('A');
-    cout<<endl;
-    midorder('A');
-    cout<<endl;
-    postorder('A');
-    
-    
-    
+void inOrder(char now) {
+	if (now == '.') return;
+	inOrder(arr[now - 'A'][0]);
+	cout << now;
+	inOrder(arr[now - 'A'][1]);
+}
+
+void postOrder(char now) {
+	if (now == '.') return;
+	postOrder(arr[now - 'A'][0]);
+	postOrder(arr[now - 'A'][1]);
+	cout << now;
+}
+
+int main() {
+
+	int N;
+	cin >> N;
+	for (int i = 0; i < N; i++) {
+		char mid, left, right;
+		cin >> mid >> left >> right;
+		arr[mid - 'A'][0] = left;
+		arr[mid - 'A'][1] = right;
+	}
+
+	preOrder('A');
+	cout << '\n';
+	inOrder('A');
+	cout << '\n';
+	postOrder('A');
+	cout << '\n';
+
+	return 0;
 }
