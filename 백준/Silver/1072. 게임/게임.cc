@@ -1,33 +1,39 @@
 #include <iostream>
 
 using namespace std;
-double X, Y;
 
+long long X, Y;
+long long MAX = 1000000000;
 
 int main() {
-	cin >> X >> Y;
-	int win = Y *100 / X;
 
-	if (X == Y || win>=99) {
+	cin >> X >> Y;
+
+	int Z = Y * 100 / X;
+
+	if (Z >= 99) {
 		cout << -1;
 		return 0;
 	}
 
-	double x = X;
-	double y = Y;
+	int left = 0; int right = MAX;
 
-	while (1) {
-		x += 1;
-		y += 1;
-		int now_win = y / x * 100;
 
-		if (now_win > win) {
-			break;
-		}
+	while (left <= right) {
+		long long x = X;
+		long long y = Y;
+
+		int mid = (left + right) / 2;
+		x += mid;
+		y += mid;
+		int now_win = y * 100 / x;
+
+		if (Z < now_win) right = mid - 1;
+		else left = mid + 1;
 	}
 
-	long long answer = y - Y;
-	cout << answer;
-	
+	cout << left;
+
+
 	return 0;
 }
