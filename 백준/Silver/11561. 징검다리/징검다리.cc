@@ -15,7 +15,7 @@ void cross_bridge(ll n) {
 
 		if (mid * (mid + 1) <= 2 * n) {
 			left = mid + 1;
-			answer = max(mid, answer);
+			answer = mid;
 		}
 		else right = mid - 1;
 	}
