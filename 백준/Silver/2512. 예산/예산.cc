@@ -21,25 +21,18 @@ int main() {
 	ll under;
 	cin >> under;
 
-	ll MAX = -1e9;
+	for (int i = 0; i < N; i++) {
+		int now = contry[i];
 
-	for (int i = 0; i < contry.size(); i++) {
-		ll now = contry[i];
-		
-		
-		if (under < contry[i]*(N-i)) {
-			ll mok=under/(contry.size() - i);
-			MAX=max(MAX, mok);
-			cout << MAX << '\n';
-
+		if (under < contry[i] * (N - i)) {
+			int result = under / (N - i);
+			cout << result << '\n';
 			return 0;
 		}
 		under -= now;
-
-		MAX = max(MAX, now);
 	}
 
-	cout << MAX << '\n';
+	cout << contry[N - 1]<<'\n';
 
 
 	return 0;
