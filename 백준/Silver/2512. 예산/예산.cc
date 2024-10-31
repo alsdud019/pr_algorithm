@@ -21,29 +21,25 @@ int main() {
 	ll under;
 	cin >> under;
 
-	ll left = 0;
-	ll right = contry[N - 1];
+	ll MAX = -1e9;
 
-	ll answer = 0;
+	for (int i = 0; i < contry.size(); i++) {
+		ll now = contry[i];
+		
+		
+		if (under < contry[i]*(N-i)) {
+			ll mok=under/(contry.size() - i);
+			MAX=max(MAX, mok);
+			cout << MAX << '\n';
 
-
-	while(left <= right) {
-		ll mid = (left + right) / 2;
-		ll sum = 0;
-
-		for (int i = 0; i < contry.size(); i++) {
-			sum += min(contry[i], mid);
+			return 0;
 		}
-		if (sum <= under) {
-			left = mid + 1;
-			answer = mid;
-		}
-		else {
-			right = mid - 1;
-		}
+		under -= now;
+
+		MAX = max(MAX, now);
 	}
 
-	cout << answer << '\n';
+	cout << MAX << '\n';
 
 
 	return 0;
