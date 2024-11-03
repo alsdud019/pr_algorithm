@@ -3,32 +3,35 @@
 #include <iostream>
 
 using namespace std;
-string gather="AEIOU";
-int answer = 0;
-int cnt=0;
 
-void dfs(string target,string now){
-    if (now.size()>gather.size()){
+bool flag=false;
+int answer=-1;
+string code="AEIOU";
+int cnt=-1;
+
+void dfs(string word, string now){
+    if (flag || now.size()>5){
         return ;
     }
     
-    if (target==now) {
-        answer=cnt;
-        return ;}
     cnt++;
+    // cout<<now<<" "<<cnt<<endl;
     
-    
-
-    for (int i=0; i<gather.size(); i++){
-        
-        dfs(target,now+gather[i]);
-        
+    if (now==word){
+        flag=true;
+        answer=cnt;
+        return ;
     }
+    
+    for (int i=0; i<code.size(); i++){
+        dfs(word, now+code[i]);
+    }
+    
 }
-
-
 int solution(string word) {
     
     dfs(word,"");
+    
+
     return answer;
 }
