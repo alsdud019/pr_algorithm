@@ -14,10 +14,6 @@ int cnt = 0;
 void DFS(int now, int level) {
 	//해당 노드가 리프노드이면
 	if (vec[now].size() == 0) {
-		//for (int i = 0; i < level; i++) {
-		//	cout << answer[i] << " ";
-		//}
-		//cout << '\n';
 		cnt++;
 		return;
 	}
@@ -27,11 +23,9 @@ void DFS(int now, int level) {
 		if (fan[next] == 1) continue;
 
 		if (visited[next] == 1) continue;
-		visited[next] = 1;
-		//answer[level] = next;
+		//visited[next] = 1;
 		DFS(next, level + 1);
-		//answer[level] = 0;
-		visited[next] = 0;
+		//visited[next] = 0;
 	}
 }
 
@@ -57,8 +51,7 @@ int main() {
 		cout << "Yes" << '\n';
 		return 0;
 	}
-	visited[1] = 1;
-	//answer[0] = 1;
+	//visited[1] = 1;
 	DFS(1, 1);
 
 	//안만난다. 
