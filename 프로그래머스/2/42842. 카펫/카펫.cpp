@@ -1,28 +1,30 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
 vector<int> solution(int brown, int yellow) {
     vector<int> answer;
+    
     int sum=brown+yellow;
-    int row=-1;
-    int col=-1;
-    for (int i=2; i<=sum/2; i++){
+    
+    for (int i=3; i<=sum/2; i++){
         if (sum%i==0){
-            // cout<<i<<endl;
-            int mok=sum/i;
-            int gop=(i-2)*(mok-2);
-            // cout<<gop<<endl;
-            if (gop==yellow) {
-                cout<<gop<<endl;
-                row= i>mok? i:mok;
-                col=sum/row;
+            int y=i;
+            int x=sum/i;
+            
+            long long gop=(y-2)*(x-2);
+            if (gop==yellow){
+                answer.push_back(y);
+                answer.push_back(x);
                 break;
             }
         }
     }
-    // cout<<row<< " "<<col<<endl;
-    return {row,col};
+    
+    sort(answer.rbegin(), answer.rend());
+    
+    return answer;
 }
