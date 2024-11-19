@@ -1,65 +1,53 @@
 #include <string>
 #include <vector>
 #include <iostream>
-// #include <cstdlib>
-// #include <typeinfo>
 #include <set>
 #include <cmath>
 
 using namespace std;
 
-string number;
 int visited[9]={0,};
-string str="";
-set<long long> s;
+set<int> s;
 
-bool check(long long num){
-    if (num==0 || num==1) return false;
-    for (int i=2; i<= sqrt(num); i++){
-        if (num%i==0) return false;
+bool check(int num){
+    for (int i=2; i<=sqrt(num); i++){
+        if (num%i==0){
+            return false;
+        }
     }
     return true;
 }
 
-void dfs(int level, string str){
-    if (level<=number.size() && str!=""){
-        // cout<<str<<endl;
-        
-        if (check(stoi(str))){
-            s.insert(stoi(str));
-        }
-        
-    }
+void dfs(string now, string numbers){
+    // cout<<now<<endl;
     
-    for (int i=0; i<number.size(); i++){
-        if (visited[i]==1) continue;
-        
-        visited[i]=1;
-        dfs(level+1, str+number[i]);    
-        visited[i]=0;
+    if (now!="" && stoi(now)>1){
+        if (check(stoi(now))){
+        s.insert(stoi(now));
+        // cout<<now<<endl;
+    }
+    }
 
-    }
     
+    
+    for (int i=0; i<numbers.size(); i++){
+        
+        if (visited[i]==1) continue;
+        char next=numbers[i];
+        visited[i]=1;
+        dfs(now+next, numbers);
+        visited[i]=0;
+        
+    }
 }
 
 int solution(string numbers) {
     int answer = 0;
     
-    number=numbers;
+    dfs("",numbers);
+    // cout<<check(stoi("110"))<<endl;
     
-    // visited[0]=1;
-    dfs(0, "");
+    cout<<s.size()<<endl;
     
-    
-//     for (auto it=s.begin(); it!=s.end(); it++){
-//         // int num=stoi();
-        
-//         // if (check(*it)) {
-//         //     answer++;
-//         // };
-//         cout<<*it<<endl;
-//     }
-    return s.size(); 
-    
-    //return answer;
+    return s.size();
 }
