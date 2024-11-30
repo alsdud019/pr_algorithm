@@ -1,45 +1,55 @@
 #include <string>
 #include <vector>
-#include <iostream>
 #include <sstream>
+#include <iostream>
 #include <map>
 
 using namespace std;
 
 vector<int> solution(string today, vector<string> terms, vector<string> privacies) {
     vector<int> answer;
-    map<string, int> term;
+    map<string, int> map;
     
-    for (string t:terms){
-        stringstream ss(t);
+    long long now=0;
+    
+    now=stoi(today.substr(0,4))*28*12+stoi(today.substr(5,2))*28+stoi(today.substr(8,2));
+    
+    for (int i=0; i<terms.size(); i++){
         
-        string type, month;
-        ss>>type>>month;
-        term[type]=stoi(month);
-        cout<<type<<" "<<stoi(month)<<endl;
-        // cout<<to_string(t[0])<<" "<<t[2]-'0'<<endl;;
+        stringstream ss(terms[i]);
+        string type,m;
+        ss>>type>>m;
+        
+        int month=stoi(m);
+        map.insert({type, month});
     }
     
-    int today_total=stoi(string(today,0,4))*12*28+stoi(string(today,5,2))*28+stoi(string(today,8,2));
-    
-    cout<<today_total<<endl;
-    int i=1;
-    for(string privacy:privacies){
-        int year=stoi(string(privacy,0,4));
-        int month=stoi(string(privacy,5,2));
-        int day=stoi(string(privacy,8,2));
+    for (int i=0; i<privacies.size(); i++){
+        int year=stoi(privacies[i].substr(0,4));
+        int month=stoi(privacies[i].substr(5,2));
+        int day=stoi(privacies[i].substr(8,2));
         
-        string type=string(privacy,11,1);
+        //개인정보 등록기간
+        int privacy=year*28*12+month*28+day;
         
-        int total=year*12*28+month*28+day-1;
-        total+=(term[type]*28);
-        cout<<term[type]<<" ";
+        //개인정보 유효기간
+        string t=privacies[i].substr(11,1);
+        int term=map[t];
         
-        cout<<"total: "<<total<<endl;
-        if (total<today_total) answer.push_back(i);
-        i++;
+        //유효기간 합한 만료날짜
+        privacy+=(term*28-1);
+        
+        if (privacy<now){
+            answer.push_back(i+1);
+        }
+        
+        
+        
         
         
     }
+    
+    
+    
     return answer;
 }
