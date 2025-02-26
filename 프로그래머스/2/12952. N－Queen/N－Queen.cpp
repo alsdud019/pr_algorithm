@@ -18,7 +18,7 @@ bool check(int now){
             flag=false;
             break;
         }
-        if (!flag) return false;
+        // if (!flag) return false;
     }
     if (flag) return true;
     else return false;
