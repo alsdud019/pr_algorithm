@@ -44,15 +44,11 @@ void dfs(int N, int level){
             dfs(N, level+1);
             visited[i]=0;
             vec.pop_back();
-        }
-
-        
-    }
-    
+        } 
+    } 
 }
 
 int solution(int n) {
-    
     
     dfs(n,0);
     
