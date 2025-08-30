@@ -16,8 +16,7 @@ int bfs(int stY, int stX){
     queue<pair<int, int>> q;
     q.push({stY, stX});
     
-    int sum=0;
-    sum+=MAP[stY][stX]-'0';
+    int sum=MAP[stY][stX]-'0';
     MAP[stY][stX]='X';    
     
     while(!q.empty()){
