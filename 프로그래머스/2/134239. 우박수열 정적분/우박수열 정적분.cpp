@@ -14,8 +14,7 @@ void snow_sequence(int k){
             k/=2;
         }
         else {
-            k*=3;
-            k+=1;
+            k=k*3+1;
         }
         vec.push_back(k);
     }
