@@ -6,18 +6,19 @@
 using namespace std;
 
 vector<int> vec;
-priority_queue<pair<int, long long>> pq;
+// priority_queue<pair<int, int>> pq;
+vector<int> answer={0,0};
 
 void find(vector<vector<int>> users, vector<int> emoticons){
     
     int plus=0;
-    long long total=0;
+    int total=0;
     
     for (int i=0; i<users.size(); i++){
         int user_per=users[i][0];
-        long long user_money=users[i][1];
+        int user_money=users[i][1];
         
-        long long sum=0;
+        int sum=0;
  
         for (int k=0; k<vec.size(); k++){
             if (vec[k]>=user_per){
@@ -31,7 +32,8 @@ void find(vector<vector<int>> users, vector<int> emoticons){
         else total+=sum;
     }
     
-    if (plus!=0 || total!=0) pq.push({plus, total}); 
+    // if (plus!=0 || total!=0) pq.push({plus, total});
+    answer=max(answer, {plus, total});
 }
 
 void recur(int n, int level, vector<vector<int>> users, vector<int> emoticons){
@@ -50,11 +52,11 @@ void recur(int n, int level, vector<vector<int>> users, vector<int> emoticons){
 }
 
 vector<int> solution(vector<vector<int>> users, vector<int> emoticons) {
-    vector<int> answer;
+    
     
     recur(emoticons.size(),0,users, emoticons);
 
-    answer.push_back(pq.top().first);
-    answer.push_back(pq.top().second);
+    // answer.push_back(pq.top().first);
+    // answer.push_back(pq.top().second);
     return answer;
 }
