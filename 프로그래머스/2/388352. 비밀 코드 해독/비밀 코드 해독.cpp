@@ -32,17 +32,7 @@ bool check(){
 void recur(int level, int n, int idx){
     
     if (level==5){
-        // for (auto a:vec){
-        //     cout<<a<<" ";
-        // }
-        // cout<<'\n';
-        if (check()) {
-            answer++;
-            // for (auto a:vec){
-            //     cout<<a<<" ";
-            // }
-            // cout<<'\n';
-        }
+        if (check()) answer++;
         return ;
     }
     
